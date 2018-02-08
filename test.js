@@ -17,7 +17,7 @@ var data2 = [
 describe('request post', function() {
 
     it("create va should response 200",function(done){
-         this.timeout(10000);
+        this.timeout(10000);
         //calling ADD api
         request
             .post('/')
@@ -25,13 +25,13 @@ describe('request post', function() {
             .expect("Content-type",/json/)
             .expect(200)
             .end(function(err,res){
-           // console.log(res);
+            // console.log(res);
             expect(res.statusCode).to.equal(200);
             done();
         })
     }),
-       it("double post should response 400",function(done){
-         this.timeout(10000);
+        it("double post should response 400",function(done){
+        this.timeout(10000);
         //calling ADD api
         request
             .post('/')
@@ -39,22 +39,51 @@ describe('request post', function() {
             .expect("Content-type",/json/)
             .expect(200)
             .end(function(err,res){
-           // console.log(res);
+            // console.log(res);
             expect(res.statusCode).to.equal(400);
             done();
         })
     }) 
-}),
+})
 
-    
+//2018-02-08 depedent test 
+var value1=1;
+
+var asyncFunction = function (fn) {
+    setTimeout(function(){
+        fn(null,'check your value');
+    },0);  
+};
+
+var repeatTest = function() {
+    it('test sample 1 using value',function(done){
+        console.log(value1);
+        done();
+    }),
+        it('test sample 2 using value',function(done){
+        console.log(value1);
+        done();
+    })        
+}
+
+describe('execute dependent test',function(){
+    before(function(done){
+        asyncFunction(function(err,value){
+            value1=value;
+            done();
+        })
+    })
+    repeatTest();
+})
+
 //sample get
-    
+
 describe('request get',function(){
 
-        it('check data2 should contains id, name, age',function(){
+    it('check data2 should contains id, name, age',function(){
         for(var i=0;i<data2.length;i++){
             request
-            .get('/'+data2[i].id)
+                .get('/'+data2[i].id)
             expect(data2[i]).to.have.property(['id']);
             expect(data2[i]).to.have.property(['name']);
             expect(data2[i]).to.have.property(['age']);
@@ -64,21 +93,21 @@ describe('request get',function(){
         it('age more than 20',function(){
         for(var i=0;i<data2.length;i++){
             request
-            .get('/'+data2[i].id)
+                .get('/'+data2[i].id)
             expect(data2[i].age).to.be.above(20);
         }
 
     }),    it('age is 15',function(){
         for(var i=0;i<data2.length;i++){
             request
-            .get('/'+data2[i].id)
+                .get('/'+data2[i].id)
             expect(data2[i].age).to.equal(15);
         }       
     }),
         it('data2 exists',function(){
         for(var i=0;i<data2.length;i++){
             request
-            .get('/'+data2[i].id)
+                .get('/'+data2[i].id)
             assert(data2[i] != null);  
         }
     })   
