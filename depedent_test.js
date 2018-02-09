@@ -1,6 +1,7 @@
 //2018-02-08 Mocha Js for promises cases
 //describe grouping the test
 //it() test case
+//change main package.json if you want to run this test case or run with mocha depedent_test.js
 
 //require
 var assert = require('assert'),
