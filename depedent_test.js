@@ -17,11 +17,11 @@ var server='localhost';
 var request = request(server);
 
 //adjust with your data
-var data2 ={ id: 1, name: "test 1", age: 15}
+var data2 ={ id: 2, name: "test 1", age: 15}
 var data3 ={id: 1, id_data2:1 , company:"company1"}
 
 //sample test using promises
-decribe("MochaJS using promises",function(){
+describe("MochaJS using promises",function(){
     it("test 01", function() {
         var testPromise = new Promise(function(resolve, reject) {
             setTimeout(function() {
