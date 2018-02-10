@@ -26,13 +26,12 @@ https://www.npmjs.com/package/supertest
 more information:
 http://chaijs.com/guide/installation/#nodejs
 
-## First Test
+## How to running script
 * Clone source from github
-* Adjust request url ( depend on server)
+* Adjust request url (depend on server)
 * run test on terminal
 `npm test`
-
-
+* If you want to try another scripts, please run script using `mocha`
 
 
 
